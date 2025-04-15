@@ -132,3 +132,28 @@ def extract_action(text, similar_input = "", similar_output = ""):
         model="llama3-70b-8192",
     )
     return chat_completion.choices[0].message.content
+
+
+"""
+# Iterate over the DataFrame
+for iteration_index, row in tqdm(df.iterrows()):
+    # Filter rows that have the same TRADE_NAME, FIRM_NAME, and Recall Type
+    matching_rows = df[(df['TRADE_NAME'] == row['TRADE_NAME']) &
+                       (df['FIRM_NAME'] == row['FIRM_NAME']) &
+                       (df['Recall Type'] == row['Recall Type'])]
+
+    # Find the row where MANUFACTURER_RECALL_REASON or ACTION are different
+    similar_row = matching_rows[
+        (matching_rows['MANUFACTURER_RECALL_REASON'] != row['MANUFACTURER_RECALL_REASON']) |
+        (matching_rows['ACTION'] != row['ACTION'])
+    ]
+
+    if not similar_row.empty:
+        # Get the index of the similar row
+        similar_index = similar_row.index[0]  # In case of multiple, you can take the first one
+
+        # Apply the extract_action function and update the Estimated_ACTION
+        df.at[iteration_index, 'Estimated_ACTION'] = extract_action(
+            row['processed_RECALL'], similar_row.iloc[0]['processed_RECALL'], similar_row.iloc[0]['processed_ACTION']
+        )
+"""
