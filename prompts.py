@@ -88,6 +88,8 @@ def process_recall_text(text):
     )
     return chat_completion.choices[0].message.content
 
+
+
 def extract_action(text, similar_input = "", similar_output = ""):
     ACTION_EXTRACTION = f"""
     You are a system designed to assist with the processing of product recalls in the medical and healthcare sectors.
@@ -95,25 +97,28 @@ def extract_action(text, similar_input = "", similar_output = ""):
 
     The input will be in just text format which mentions the recall 
     The output must be in just text format which mentions actions
-    
-    Here is the text that you need to process : {text}  
+
+
+    Here is the input text that you need to process: {text}.
+    Here is another input text that is similar to my input, and you need to understand the key points of it: {similar_input}.
+    Here is the output of the similar input text. You need to understand it well and generate a similar output: {similar_output}.
 
     Here’s what you need to do:
-    1. Extract processed_RECALL from given input 
-    3. Ensure the actions are clearly outlined in bullet points.
-    4. The actions should be concise and focused on what must be done.
-    5. Maintain the wording "actions" in each bullet point to ensure clarity.
-    6. The output should not contain any introductory or concluding sentences, such as "Here is the solution" or "The following actions should be taken."
-    7. The format should only consist of bullet points starting with "• " (U+2022 + space) for each action.
-    8. No additional context, explanations, or examples should be included. Just provide the actions.
+    1. Understand the input text.
+    2. Understand the other input text, which is similar to the input text.
+    3. Understand the output text, which is the result of the similar input.
+    4. Generate an otput by using input text
 
-    
-    
-    
-    
-    • Ensure correct loading of sample racks as per the loading instructions.
-    • Avoid pushing sample racks too far on the sample entry queue.
-    • Follow exact sample rack loading instructions to avoid misreads of Sample IDs.
+    Make sure your response follows these:
+    1. Ensure the actions are clearly outlined in bullet points.
+    2. The actions should be concise and focused on what must be done.
+    3. Maintain the wording "actions" in each bullet point to ensure clarity.
+    4. The output should not contain any introductory or concluding sentences, such as "Here is the solution" or "The following actions should be taken."
+    5. The format should only consist of bullet points starting with "• " (U+2022 + space) for each action.
+    6. No additional context, explanations, or examples should be included. Just provide the actions.
+    7. Ensure correct loading of sample racks as per the loading instructions.
+    8. Avoid pushing sample racks too far on the sample entry queue.
+    9. Follow exact sample rack loading instructions to avoid misreads of Sample IDs.
 
     Now, using the input data provided, generate the solution prompt focusing solely on the actions required to address the recall.
     """
